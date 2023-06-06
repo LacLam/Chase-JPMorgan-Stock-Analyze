@@ -40,3 +40,20 @@ SELECT YEAR([Date]) [years], ROUND(avg(high-low),2) as Sach_avg_volatility
 from [project1-3].dbo.[The Goldman Sachs]
 group by YEAR([Date])
 order by YEAR([Date])
+
+--Moving Avg between 2 days and 30 days
+select *,
+	AVG([Close]) OVER(Order by Date
+		Rows between 2 preceding and current row) as [2day_moving_avg],
+	AVG([Close]) OVER(Order by Date
+		Rows between 29 preceding and current row) as [30day_moving_avg]
+from [project1-3].dbo.[JPMorgan Chase]
+order by Date
+
+select *,
+	AVG([Close]) OVER(Order by Date
+		Rows between 2 preceding and current row) as [2day_moving_avg],
+	AVG([Close]) OVER(Order by Date
+		Rows between 29 preceding and current row) as [30day_moving_avg]
+from [project1-3].dbo.[The Goldman Sachs]
+order by Date
