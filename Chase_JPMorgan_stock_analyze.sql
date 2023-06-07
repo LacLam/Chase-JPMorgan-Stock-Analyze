@@ -42,7 +42,7 @@ group by YEAR([Date])
 order by YEAR([Date])
 
 --Moving Avg between 2 days and 30 days
-select *,
+select [Date],[Close],
 	AVG([Close]) OVER(Order by Date
 		Rows between 2 preceding and current row) as [2day_moving_avg],
 	AVG([Close]) OVER(Order by Date
@@ -50,7 +50,7 @@ select *,
 from [project1-3].dbo.[JPMorgan Chase]
 order by Date
 
-select *,
+select [Date],[Close],
 	AVG([Close]) OVER(Order by Date
 		Rows between 2 preceding and current row) as [2day_moving_avg],
 	AVG([Close]) OVER(Order by Date
